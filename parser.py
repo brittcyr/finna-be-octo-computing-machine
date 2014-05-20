@@ -69,16 +69,30 @@ def get_x():
     f.close()
     return x
 
-if __name__ == "__main__":
+# This optimizes the homefield advantage over the data set
+def get_best_ratings():
     list_of_teams = get_list_of_teams()
     number_of_teams = len(list_of_teams)
     number_of_games = get_number_of_games()
 
-    Xm = numpy.mat(numpy.array(get_x()))
-    Ym = numpy.mat(numpy.array(get_y()))
+    global HOME_ADVANTAGE
+    best_advantage = 0.0
+    best_error = 999999999
+    best_ratings = None
+    for val in range(-200, 200):
+        HOME_ADVANTAGE = 1.0 / 100 * val
+        Xm = numpy.mat(numpy.array(get_x()))
+        Ym = numpy.mat(numpy.array(get_y()))
+        r = numpy.linalg.pinv(Xm).dot(Ym.T)
 
-    # r is the rankings from simple least squares
-    r = numpy.linalg.pinv(Xm).dot(Ym.T)
-    print r
+        e = Xm.dot(r) - Ym
+        e_norm = numpy.linalg.norm(e)
 
+        if best_error > e_norm:
+            best_error = e_norm
+            best_advantage = HOME_ADVANTAGE
+            best_ratings = r
+    return r
 
+if __name__ == "__main__":
+    print get_best_ratings()
