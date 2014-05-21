@@ -43,14 +43,14 @@
 %------------------------------------------------
 
 \section{Overview}
-The layout of this project is first creating rating for every qualified team
+The layout of this project is first creating a rating for every qualified team
 using the past data of match results for the past few years. Once I have the ratings for
-all the teams, I precompute the probable result if every pair of teams would meet in
+all the teams, I precompute the probable result for every pair of teams that could meet in
 the tournament. Once I have done this, I run many simulations of the tournament.
 
 \section{Team Ratings}
 To get ratings for all the teams, I first load all the data provided in the csv. Each
-score is then reduced to a score differential. 
+game is then reduced to a score differential. 
 I do not use all games in the file though. I ignore those with extremely large goal
 differential since the exact score differential is then likely inaccurate.
 I run a least squares algorithm to 
