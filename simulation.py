@@ -155,14 +155,14 @@ def do_simulations():
 
     for ind in range(len(results)):
         name = qualified[ind]
-        group = float(results[ind][0]) / NUM_SIMULATIONS
-        knockout = float(results[ind][1]) / NUM_SIMULATIONS
-        quarter = float(results[ind][2]) / NUM_SIMULATIONS
-        semi = float(results[ind][3]) / NUM_SIMULATIONS
-        runner_up = float(results[ind][4]) / NUM_SIMULATIONS
-        winner = float(results[ind][5]) / NUM_SIMULATIONS
+        group = format(float(results[ind][0]) / NUM_SIMULATIONS, 'f')
+        knockout = format(float(results[ind][1]) / NUM_SIMULATIONS, 'f')
+        quarter = format(float(results[ind][2]) / NUM_SIMULATIONS, 'f')
+        semi = format(float(results[ind][3]) / NUM_SIMULATIONS, 'f')
+        runner_up = format(float(results[ind][4]) / NUM_SIMULATIONS, 'f')
+        winner = format(float(results[ind][5]) / NUM_SIMULATIONS, 'f')
 
-        print name, group, knockout, quarter, semi, runner_up, winner
+        print '{name}\t{group}\t{knockout}\t{quarter}\t{semi}\t{runner_up}\t{winner}'.format(name=name,group=group,knockout=knockout,quarter=quarter,semi=semi,runner_up=runner_up,winner=winner)
 
 
 if __name__ == "__main__":
