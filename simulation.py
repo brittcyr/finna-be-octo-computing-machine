@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from random import random
 from games_precompute import pairwise_simulate
+from numpy import zeros
 
 # Play an individual game based on similar games and add a small points tweak
 def play_game(team1, team2, precomputed_table):
@@ -130,6 +131,9 @@ def do_simulations():
     precomputed_table = pairwise_simulate(qualified)
     NUM_SIMULATIONS = 100000
 
+    NUM_ROUNDS = 6
+    results = zeros(( len(qualified), NUM_ROUNDS))
+
     for sim in range(NUM_SIMULATIONS):
         result = run_simulation(precomputed_table)
         # RESULT is [[Knocked out in group stage],
@@ -138,6 +142,14 @@ def do_simulations():
         #            [Knocked out in semi-finals],
         #            [Runner-up],
         #            [Champion],]
+
+        for cur_round in range(len(result)):
+            teams = result[cur_round]
+            for team in teams:
+                results[qualified.index(team)][cur_round] += 1
+
+    print results
+
 
         # TODO: Tabulate the results
 
