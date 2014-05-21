@@ -129,7 +129,7 @@ def do_simulations():
     qualified = sum(groups, [])
 
     precomputed_table = pairwise_simulate(qualified)
-    NUM_SIMULATIONS = 100000
+    NUM_SIMULATIONS = 100
 
     NUM_ROUNDS = 6
     results = zeros(( len(qualified), NUM_ROUNDS))
