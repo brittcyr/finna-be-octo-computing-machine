@@ -5,9 +5,11 @@ from numpy.linalg import inv
 
 HOME_ADVANTAGE = 0
 
+# This is for removing blowouts or really old games etc.
 def using_game(home, away, home_goals, away_goals):
     return True
 
+# Total number of games that are used
 def get_number_of_games():
     f = open("results.csv", 'r')
     f.readline()
@@ -20,6 +22,7 @@ def get_number_of_games():
     f.close()
     return count
 
+# List of all teams
 def get_list_of_teams():
     f = open("results.csv", 'r')
     f.readline()
@@ -33,9 +36,11 @@ def get_list_of_teams():
     list_of_teams = sorted(list(teams))
     return list_of_teams
 
+# Number of teams overall
 def get_number_of_teams():
     return len(get_list_of_teams())
 
+# Matrix of adjusted score differentials
 def get_y():
     y = [0] * get_number_of_games()
     f = open("results.csv", 'r')
@@ -52,6 +57,7 @@ def get_y():
     f.close()
     return y
 
+# This is the matrix of games played
 def get_x():
     x = zeros(( get_number_of_games(), get_number_of_teams()))
     list_of_teams = get_list_of_teams()
@@ -79,9 +85,9 @@ def get_best_ratings():
     best_advantage = 0.0
     best_error = 999999999
     best_ratings = None
+    Xm = numpy.mat(numpy.array(get_x()))
     for val in range(-200, 200):
         HOME_ADVANTAGE = 1.0 / 100 * val
-        Xm = numpy.mat(numpy.array(get_x()))
         Ym = numpy.mat(numpy.array(get_y()))
         r = numpy.linalg.pinv(Xm).dot(Ym.T)
 
@@ -95,5 +101,5 @@ def get_best_ratings():
     return r
 
 if __name__ == "__main__":
-    print get_best_ratings()
-    print get_list_of_teams()
+    ratings = get_best_ratings()
+    teams = get_list_of_teams()
