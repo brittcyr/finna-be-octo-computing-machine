@@ -96,3 +96,4 @@ def get_best_ratings():
 
 if __name__ == "__main__":
     print get_best_ratings()
+    print get_list_of_teams()
