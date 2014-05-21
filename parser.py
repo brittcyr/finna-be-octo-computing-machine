@@ -8,7 +8,8 @@ BRAZIL_BOOST = .5
 
 # This is for removing blowouts or really old games etc.
 def using_game(home, away, home_goals, away_goals):
-    pass
+    if abs(int(home_goals) - int(away_goals)) > 6:
+        return False
     return True
 
 # Total number of games that are used
