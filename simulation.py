@@ -57,8 +57,14 @@ def run_simulation(precomputed_table):
     groups = [A, B, C, D, E, F, G, H]
     qualified = sum(groups, [])
 
-    for group in groups:
-        group = play_group_stage(group, precomputed_table)
+    A = play_group_stage(A, precomputed_table)
+    B = play_group_stage(B, precomputed_table)
+    C = play_group_stage(C, precomputed_table)
+    D = play_group_stage(D, precomputed_table)
+    E = play_group_stage(E, precomputed_table)
+    F = play_group_stage(F, precomputed_table)
+    G = play_group_stage(G, precomputed_table)
+    H = play_group_stage(H, precomputed_table)
 
     knockout = [A[0], B[1], C[0], D[1], E[0], F[1], G[0], H[1],
                 A[1], B[0], C[1], D[0], E[1], F[0], G[1], H[0]]
@@ -111,7 +117,6 @@ def run_simulation(precomputed_table):
 
     result = [out_in_group_stage, out_in_last_16, out_in_last_8, out_in_last_4, runner_up, champion]
     return result
-    print result
 
 def do_simulations():
     # This is the list of groups
@@ -129,7 +134,7 @@ def do_simulations():
     qualified = sum(groups, [])
 
     precomputed_table = pairwise_simulate(qualified)
-    NUM_SIMULATIONS = 100
+    NUM_SIMULATIONS = 1000000
 
     NUM_ROUNDS = 6
     results = zeros(( len(qualified), NUM_ROUNDS))
@@ -148,10 +153,8 @@ def do_simulations():
             for team in teams:
                 results[qualified.index(team)][cur_round] += 1
 
-    print results
-
-
-        # TODO: Tabulate the results
+    for ind in range(len(results)):
+        print qualified[ind], results[ind][0], results[ind][1], results[ind][2], results[ind][3], results[ind][4], results[ind][5]
 
 
 if __name__ == "__main__":

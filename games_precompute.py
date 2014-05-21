@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from parser import get_best_ratings, get_list_of_teams
 
-RANGE = .20
+RANGE = .30
 
 # Run a simulation of all pairs in the list of teams
 def pairwise_simulate(teams):
