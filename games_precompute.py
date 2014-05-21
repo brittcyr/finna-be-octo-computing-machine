@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from parser import get_best_ratings, get_list_of_teams
 
-RANGE = .25
+RANGE = .20
 
 # Run a simulation of all pairs in the list of teams
 def pairwise_simulate(teams):
@@ -65,7 +65,9 @@ def pairwise_simulate(teams):
 
             number_of_games = sum(similar_games)
             outcome = [float(x) / number_of_games for x in similar_games]
+            outcome_rev = [outcome[1], outcome[0], outcome[2]]
             outcomes[(team1, team2)] = outcome
+            outcomes[(team2, team1)] = outcome_rev
     return outcomes
 
 if __name__ == "__main__":

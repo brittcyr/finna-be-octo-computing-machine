@@ -4,9 +4,11 @@ from numpy.linalg import inv
 
 
 HOME_ADVANTAGE = 0
+BRAZIL_BOOST = .5
 
 # This is for removing blowouts or really old games etc.
 def using_game(home, away, home_goals, away_goals):
+    pass
     return True
 
 # Total number of games that are used
@@ -98,6 +100,11 @@ def get_best_ratings():
             best_error = e_norm
             best_advantage = HOME_ADVANTAGE
             best_ratings = r
+
+    # Brazil gets a home boost of .5 goals per game
+    global BRAZIL_BOOST
+
+    r[list_of_teams.index("Brazil")] = r[list_of_teams.index("Brazil")] + BRAZIL_BOOST
     return r
 
 if __name__ == "__main__":
