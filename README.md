@@ -11,3 +11,6 @@ This is the Britt Cyr submission for http://engineering.footballradar.com/compet
 
 3. Run many simulations of the tournament
 
+
+To run the project:
+python simulation.py

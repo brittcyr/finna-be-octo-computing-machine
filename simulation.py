@@ -154,7 +154,15 @@ def do_simulations():
                 results[qualified.index(team)][cur_round] += 1
 
     for ind in range(len(results)):
-        print qualified[ind], results[ind][0], results[ind][1], results[ind][2], results[ind][3], results[ind][4], results[ind][5]
+        name = qualified[ind]
+        group = float(results[ind][0]) / NUM_SIMULATIONS
+        knockout = float(results[ind][1]) / NUM_SIMULATIONS
+        quarter = float(results[ind][2]) / NUM_SIMULATIONS
+        semi = float(results[ind][3]) / NUM_SIMULATIONS
+        runner_up = float(results[ind][4]) / NUM_SIMULATIONS
+        winner = float(results[ind][5]) / NUM_SIMULATIONS
+
+        print name, group, knockout, quarter, semi, runner_up, winner
 
 
 if __name__ == "__main__":
