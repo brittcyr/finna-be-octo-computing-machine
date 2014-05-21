@@ -13,4 +13,5 @@ This is the Britt Cyr submission for http://engineering.footballradar.com/compet
 
 
 To run the project:
+
 python simulation.py
